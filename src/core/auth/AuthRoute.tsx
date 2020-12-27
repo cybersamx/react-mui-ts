@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, RouteProps, useLocation } from 'react-router';
 import { Navigate } from 'react-router-dom';
 
-import { useAuth } from './useAuth';
+import { useAuth } from './AuthContext';
 
 function AuthRoute({ children, element, ...rest }: RouteProps) {
   const auth = useAuth();

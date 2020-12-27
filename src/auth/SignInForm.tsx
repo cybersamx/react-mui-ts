@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { useAuth } from '../core/auth/useAuth';
+import { useAuth } from '../core/auth/AuthContext';
 
 export interface SignInFormProps {
   onSubmit?: (e: FormEvent) => void;
@@ -20,6 +20,7 @@ function SignInForm({ onSubmit }: SignInFormProps) {
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   // If no form submission handler is passed, we use handleSignIn.
   const handleSignIn = async (e: FormEvent) => {
@@ -33,9 +34,10 @@ function SignInForm({ onSubmit }: SignInFormProps) {
       try {
         await auth.signIn(username, password);
         const pathname = previousPath(search);
+        setError('');
         navigate({ pathname: pathname });
       } catch (err) {
-        console.error(err);
+        setError(err.message);
       }
     }
   };
@@ -53,6 +55,7 @@ function SignInForm({ onSubmit }: SignInFormProps) {
         </label>
       )}
       <button type="submit">{auth.isSignedIn() ? 'Sign-Out' : 'Sign-In'}</button>
+      <p>{error}</p>
     </form>
   );
 }

@@ -23,13 +23,14 @@ module.exports = {
   },
   rules: {
     // Add or overwrite specific rules.
+    '@typescript-eslint/explicit-function-return-type': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
     'arrow-parens': ['error'],
     'import/prefer-default-export': ['off'],
     'no-param-reassign': ['warn'],
+    'no-unused-vars': ['warn'],
     'react/jsx-first-prop-new-line': ['off', 'multiline'],
     'react/jsx-max-props-per-line': ['off', { maximum: 1 }],
-    '@typescript-eslint/explicit-function-return-type': ['off'],
-    '@typescript-eslint/explicit-module-boundary-types': ['off'],
   },
   settings: {
     'import/parsers': {
