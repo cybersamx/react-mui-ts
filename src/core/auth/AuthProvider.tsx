@@ -1,17 +1,17 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
 import { NULL_USER, User } from './authModel';
 import * as AuthService from './AuthService';
 
-export interface Auth {
+interface Auth {
   getAuthUser: () => User | null | undefined;
   isSignedIn: () => boolean;
   signIn: (username: string, password: string) => void;
   signOut: () => void;
 }
 
-export interface AuthProviderProps {
-  children?: React.ReactNode;
+interface AuthProviderProps {
+  children?: ReactNode;
 }
 
 const defaultAuth = {
@@ -59,4 +59,5 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
   );
 }
 
+export type { Auth, AuthProviderProps };
 export { AuthContext, AuthProvider, useAuth };

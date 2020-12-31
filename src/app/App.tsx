@@ -1,7 +1,5 @@
-import React from 'react';
-
 import AppRoutes from './AppRoutes';
-import { AuthProvider } from '../core/auth/AuthContext';
+import { AuthProvider } from '../core/auth/AuthProvider';
 
 function App() {
   return (

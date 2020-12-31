@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { useAuth } from '../core/auth/AuthContext';
+import { useAuth } from '../core/auth/AuthProvider';
 import NavBar from '../core/NavBar';
 
 function ProfilePage() {

@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router';
-import { useAuth } from './auth/AuthContext';
+import { Link } from 'react-router-dom';
+
+import { useAuth } from './auth/AuthProvider';
 
 function AuthButton() {
   const navigate = useNavigate();

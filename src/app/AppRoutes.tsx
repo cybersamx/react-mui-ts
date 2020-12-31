@@ -1,12 +1,11 @@
-import React from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 
+import { SignInPage, SignUpPage } from '../auth';
+import AuthRoute from '../core/auth/AuthRoute';
 import DashboardPage from '../dashboard/DashboardPage';
 import HomePage from '../home/HomePage';
 import NotFoundPage from '../status/NotFoundPage';
 import { ProfilePage, ProfileEditPage } from '../profile';
-import AuthRoute from '../core/auth/AuthRoute';
-import { SignInPage } from '../auth';
 
 function AppRoutes() {
   return (
@@ -14,6 +13,7 @@ function AppRoutes() {
       <Route path="/">
         <Route path="/" element={<HomePage />} />
         <Route path="signin" element={<SignInPage />} />
+        <Route path="signup" element={<SignUpPage />} />
         <Route path="not-found" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/not-found" />} />
       </Route>

@@ -9,6 +9,9 @@ function SignInPage() {
       <NavBar />
       <h2>Auth</h2>
       <SignInForm />
+      <p>
+        or <a href="/signup">Sign-up</a>
+      </p>
     </Fragment>
   );
 }
