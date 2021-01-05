@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 
 import { NULL_USER, User } from './authModel';
 import * as AuthService from './AuthService';
@@ -27,8 +27,15 @@ const useAuth = () => useContext(AuthContext);
 function AuthProvider({ children, ...rest }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>();
 
+  useEffect(() => {
+    setUser(user);
+  }, [user]);
+
   let getAuthUser = useCallback(() => user, [user]);
-  const isSignedIn = () => !!user;
+  const isSignedIn = () => {
+    console.log('isSignedIn', user);
+    return !!user;
+  };
   const signOut = () => {
     AuthService.removeUserFromStorage();
     setUser(null);

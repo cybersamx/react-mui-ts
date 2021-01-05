@@ -1,8 +1,21 @@
-import { Fragment } from 'react';
+import { Button, Link, makeStyles } from '@material-ui/core';
+import { DetailedHTMLProps, Fragment, InputHTMLAttributes, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import { useAuth } from './auth/AuthProvider';
+
+const useStyles = makeStyles((theme) => ({
+  nav: {
+    margin: theme.spacing(1, 1.5),
+    color: theme.palette.text.primary,
+    borderColor: theme.palette.text.primary,
+  },
+}));
+
+interface AuthLinkProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  children?: ReactNode;
+  pathname: string;
+}
 
 function AuthButton() {
   const navigate = useNavigate();
@@ -19,29 +32,35 @@ function AuthButton() {
   };
 
   return (
-    <p>
-      <button onClick={handleClick}>{auth.isSignedIn() ? 'Sign-Out' : 'Sign-In'}</button>
-    </p>
+    <Button variant="outlined" onClick={handleClick}>
+      {auth.isSignedIn() ? 'Sign-Out' : 'Sign-In'}
+    </Button>
+  );
+}
+
+function AuthLink({ children, className, pathname }: AuthLinkProps) {
+  return (
+    <Link variant="body1" href={pathname} className={className}>
+      {children}
+    </Link>
   );
 }
 
 function NavBar() {
-  const location = useLocation();
+  const classes = useStyles();
 
   return (
     <Fragment>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-      </ul>
-      {location.pathname === '/signin' || <AuthButton />}
+      <Link variant="body1" href="/" className={classes.nav}>
+        Home
+      </Link>
+      <AuthLink pathname="/dashboard" className={classes.nav}>
+        Dashboard
+      </AuthLink>
+      <AuthLink pathname="/profile" className={classes.nav}>
+        Profile
+      </AuthLink>
+      <AuthButton />
     </Fragment>
   );
 }

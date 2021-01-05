@@ -70,7 +70,7 @@ function FormProvider({ children, initialFields = {}, onChange, onValid }: FormP
     },
     [setInvalidFields]
   );
-  let form = {
+  let form: Form = {
     setField,
     getField,
     setFieldDirty,

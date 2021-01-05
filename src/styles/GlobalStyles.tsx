@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => {
-  createStyles({
+  return createStyles({
     '@global': {
       '*': {
         margin: 0,
@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => {
       width: '100%',
     },
     body: {
+      margin: 0,
       height: '100%',
       width: '100%',
     },
@@ -28,11 +29,11 @@ const useStyles = makeStyles(() => {
   });
 });
 
-function GlobalStyles() {
+const GlobalStyles = () => {
   // Inject global styles for all material components.
   useStyles();
 
   return null;
-}
+};
 
 export default GlobalStyles;

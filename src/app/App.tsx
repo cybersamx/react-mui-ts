@@ -1,6 +1,7 @@
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
 import AppRoutes from './AppRoutes';
 import { AuthProvider } from '../core/auth/AuthProvider';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import GlobalStyles from '../styles/GlobalStyles';
 
 const theme = createMuiTheme({
@@ -23,12 +24,12 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 
