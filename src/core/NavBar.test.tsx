@@ -7,7 +7,7 @@ describe('NavBar', () => {
   it('should show 3 links', async () => {
     renderWithRouter(<NavBar />, { route: '/' });
 
-    let items = screen.getAllByRole('listitem');
+    let items = screen.getAllByRole('link');
     expect(items).toHaveLength(3);
 
     let elem = screen.getByRole('link', { name: /home/i });

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 import { NULL_USER, User } from './authModel';
 import * as AuthService from './AuthService';
@@ -25,26 +25,21 @@ const AuthContext = createContext<Auth>(defaultAuth);
 const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children, ...rest }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>();
-
-  useEffect(() => {
-    setUser(user);
-  }, [user]);
-
-  let getAuthUser = useCallback(() => user, [user]);
+  let getAuthUser = () => {
+    return AuthService.getUserFromStorage();
+  };
   const isSignedIn = () => {
-    console.log('isSignedIn', user);
-    return !!user;
+    return !!AuthService.getUserFromStorage();
   };
   const signOut = () => {
     AuthService.removeUserFromStorage();
-    setUser(null);
   };
   const signIn = async (username: string, password: string): Promise<User | null> => {
     return new Promise<User | null>(async (resolve, reject) => {
       try {
         const user = await AuthService.signIn(username, password);
-        setUser(user);
+        console.log('signIn');
+        AuthService.setUserToStorage(user);
         resolve(user);
       } catch (err) {
         return reject(err);

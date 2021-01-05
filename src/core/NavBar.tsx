@@ -1,6 +1,6 @@
 import { Button, Link, makeStyles } from '@material-ui/core';
 import { DetailedHTMLProps, Fragment, InputHTMLAttributes, ReactNode } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import { useAuth } from './auth/AuthProvider';
 
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface AuthLinkProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface AuthLinkProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLLinkElement>, HTMLLinkElement> {
   children?: ReactNode;
   pathname: string;
 }

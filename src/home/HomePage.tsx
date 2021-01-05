@@ -1,13 +1,12 @@
-import { Fragment } from 'react';
-
+import { Page } from '../layouts';
 import NavBar from '../core/NavBar';
 
 function HomePage() {
   return (
-    <Fragment>
+    <Page title="Home">
       <NavBar />
       <h2>Home</h2>
-    </Fragment>
+    </Page>
   );
 }
 

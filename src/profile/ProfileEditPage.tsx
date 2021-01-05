@@ -1,13 +1,12 @@
-import { Fragment } from 'react';
-
+import { Page } from '../layouts';
 import NavBar from '../core/NavBar';
 
 function ProfileEditPage() {
   return (
-    <Fragment>
+    <Page title="Profile Edit">
       <NavBar />
       <p>Profile Edit</p>
-    </Fragment>
+    </Page>
   );
 }
 
