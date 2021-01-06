@@ -44,6 +44,7 @@ function InputField({ onValidate, name, label, ...rest }: InputFieldProps) {
       <TextField
         variant="outlined"
         margin="normal"
+        id={name}
         required
         label={label || splitCamelCase(name)}
         name={name}
