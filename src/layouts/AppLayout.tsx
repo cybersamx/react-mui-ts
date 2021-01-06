@@ -1,19 +1,11 @@
-import { makeStyles, Theme } from '@material-ui/core';
+import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-  },
-}));
-
 function AppLayout() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Fragment>
       <Outlet />
-    </div>
+    </Fragment>
   );
 }
 

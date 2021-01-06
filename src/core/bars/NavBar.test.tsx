@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 
 import NavBar from './NavBar';
-import { renderWithRouter } from './utils/testUtils';
+import { testUtils } from '../utils';
 
 describe('NavBar', () => {
   it('should show 3 links', async () => {
-    renderWithRouter(<NavBar />, { route: '/' });
+    testUtils.renderWithRouter(<NavBar />, { route: '/' });
 
     let items = screen.getAllByRole('link');
     expect(items).toHaveLength(3);

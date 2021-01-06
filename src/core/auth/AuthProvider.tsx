@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext } from 'react';
 
 import { NULL_USER, User } from './authModel';
-import * as AuthService from './AuthService';
+import * as authService from './authService';
 
 interface Auth {
   getAuthUser: () => User | null | undefined;
@@ -26,20 +26,20 @@ const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children, ...rest }: AuthProviderProps) {
   let getAuthUser = () => {
-    return AuthService.getUserFromStorage();
+    return authService.getUserFromStorage();
   };
   const isSignedIn = () => {
-    return !!AuthService.getUserFromStorage();
+    return !!authService.getUserFromStorage();
   };
   const signOut = () => {
-    AuthService.removeUserFromStorage();
+    authService.removeUserFromStorage();
   };
   const signIn = async (username: string, password: string): Promise<User | null> => {
     return new Promise<User | null>(async (resolve, reject) => {
       try {
-        const user = await AuthService.signIn(username, password);
+        const user = await authService.signIn(username, password);
         console.log('signIn');
-        AuthService.setUserToStorage(user);
+        authService.setUserToStorage(user);
         resolve(user);
       } catch (err) {
         return reject(err);

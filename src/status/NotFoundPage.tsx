@@ -1,14 +1,31 @@
-import { Fragment } from 'react';
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core';
 
-import NavBar from '../core/NavBar';
+import { Page } from '../layouts';
+import { NavBar } from '../core/bars';
 
-function NotFoundPage() {
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    textAlign: 'center',
+    marginTop: theme.spacing(2),
+  },
+  title: {
+    marginTop: theme.spacing(1),
+  },
+}));
+
+function HomePage() {
+  const classes = useStyles();
+
   return (
-    <Fragment>
+    <Page title="404 Not Found">
       <NavBar />
-      <p>Not Found</p>
-    </Fragment>
+      <Container component="main" maxWidth="md" className={classes.root}>
+        <Typography variant="h2" className={classes.title}>
+          404 Not Found
+        </Typography>
+      </Container>
+    </Page>
   );
 }
 
-export default NotFoundPage;
+export default HomePage;

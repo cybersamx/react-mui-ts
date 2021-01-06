@@ -1,5 +1,5 @@
-import { AuthProvider } from './AuthProvider';
+import { AuthProvider, useAuth } from './AuthProvider';
 import AuthRoute from './AuthRoute';
-import * as AuthService from './AuthService';
+import * as authService from './authService';
 
-export { AuthProvider, AuthRoute, AuthService };
+export { AuthProvider, AuthRoute, authService, useAuth };

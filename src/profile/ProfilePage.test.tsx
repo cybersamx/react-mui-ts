@@ -1,13 +1,13 @@
 import { screen } from '@testing-library/react';
 
 import ProfilePage from './ProfilePage';
-import { renderWithRouter } from '../core/utils/testUtils';
+import { testUtils } from '../core/utils';
 
 describe('Profile page', () => {
   it('should show the text profile', async () => {
-    renderWithRouter(<ProfilePage />, { route: '/' });
+    testUtils.renderWithRouter(<ProfilePage />, { route: '/' });
 
-    const elem = await screen.getByRole('heading', { name: /^profile/i });
+    const elem = await screen.getByRole('heading', { name: /^Profile/ });
     expect(elem).toBeInTheDocument();
   });
 });

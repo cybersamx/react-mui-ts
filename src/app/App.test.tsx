@@ -32,7 +32,7 @@ describe('Access to an non-existing page', () => {
 
   it('should redirect to the not-found page', async () => {
     expect(window.location.pathname).toBe('/not-found');
-    const elem = await screen.findByText(/^not found/i);
+    const elem = await screen.findByText(/^404 Not Found/);
     expect(elem).toBeInTheDocument();
   });
 });

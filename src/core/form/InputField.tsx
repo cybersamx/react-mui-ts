@@ -1,8 +1,11 @@
-import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useEffect, useState } from 'react';
+// CREDIT: The React Cookbook by David Griffiths, O'Reilly.
+
+import { BaseTextFieldProps, TextField, Typography } from '@material-ui/core';
+import { ChangeEvent, Fragment, useEffect, useState } from 'react';
 
 import { useForm } from './FormProvider';
 
-interface InputFieldProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface InputFieldProps extends BaseTextFieldProps {
   onValidate?: (val: any) => string;
   name: string;
   label?: string;
@@ -37,23 +40,27 @@ function InputField({ onValidate, name, label, ...rest }: InputFieldProps) {
   }, [setInvalid, name, error]);
 
   return (
-    <div>
-      <label htmlFor={name}>{label || splitCamelCase(name)}:</label>
-      <input
-        id={name}
-        onBlur={() => form.setFieldDirty(name)}
+    <Fragment>
+      <TextField
+        variant="outlined"
+        margin="normal"
+        required
+        label={label || splitCamelCase(name)}
+        name={name}
+        autoComplete={name}
         value={value || ''}
+        onBlur={() => form.setFieldDirty(name)}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           form.setFieldDirty(name);
           form.setField(name, e.target.value);
         }}
+        autoFocus
         {...rest}
       />
-      {<div>{form.isFieldDirty(name) && error ? error : ' '}</div>}
-    </div>
+      {<Typography variant="body2">{form.isFieldDirty(name) && error ? error : ' '}</Typography>}
+    </Fragment>
   );
 }
 
 export type { InputFieldProps };
-export { splitCamelCase };
-export default InputField;
+export { InputField, splitCamelCase };

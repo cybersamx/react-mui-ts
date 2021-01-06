@@ -1,6 +1,6 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
     '@global': {
       '*': {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => {
       width: '100%',
     },
     body: {
-      margin: 0,
+      'font-family': theme.typography.fontFamily,
       height: '100%',
       width: '100%',
     },

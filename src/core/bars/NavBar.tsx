@@ -1,23 +1,22 @@
-import { Button, Link, makeStyles } from '@material-ui/core';
-import { DetailedHTMLProps, Fragment, InputHTMLAttributes, ReactNode } from 'react';
+import { Button, ButtonProps, Link, makeStyles } from '@material-ui/core';
+import { DetailedHTMLProps, Fragment, LinkHTMLAttributes, ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 
-import { useAuth } from './auth/AuthProvider';
+import { useAuth } from '../auth';
 
 const useStyles = makeStyles((theme) => ({
   nav: {
-    margin: theme.spacing(1, 1.5),
+    margin: theme.spacing(2, 1.5),
     color: theme.palette.text.primary,
-    borderColor: theme.palette.text.primary,
   },
 }));
 
-interface AuthLinkProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLLinkElement>, HTMLLinkElement> {
+interface AuthLinkProps extends DetailedHTMLProps<LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement> {
   children?: ReactNode;
   pathname: string;
 }
 
-function AuthButton() {
+function AuthButton({ className }: ButtonProps) {
   const navigate = useNavigate();
   const auth = useAuth();
 
@@ -32,7 +31,7 @@ function AuthButton() {
   };
 
   return (
-    <Button variant="outlined" onClick={handleClick}>
+    <Button variant="outlined" onClick={handleClick} className={className}>
       {auth.isSignedIn() ? 'Sign-Out' : 'Sign-In'}
     </Button>
   );
@@ -60,7 +59,7 @@ function NavBar() {
       <AuthLink pathname="/profile" className={classes.nav}>
         Profile
       </AuthLink>
-      <AuthButton />
+      <AuthButton className={classes.nav} />
     </Fragment>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, RouteProps, useLocation } from 'react-router';
 import { Navigate } from 'react-router-dom';
 

@@ -1,11 +1,11 @@
 import { Navigate, Routes, Route } from 'react-router-dom';
 
 import { SignInPage, SignUpPage } from '../auth';
-import AuthRoute from '../core/auth/AuthRoute';
-import DashboardPage from '../dashboard/DashboardPage';
-import HomePage from '../home/HomePage';
-import AppLayout from '../layouts/AppLayout';
-import NotFoundPage from '../status/NotFoundPage';
+import { AuthRoute } from '../core/auth';
+import { DashboardPage } from '../dashboard';
+import { HomePage } from '../home';
+import { AppLayout } from '../layouts';
+import { NotFoundPage } from '../status';
 import { ProfilePage, ProfileEditPage } from '../profile';
 
 function AppRoutes() {

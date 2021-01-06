@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, HtmlHTMLAttributes } from 'react';
 
-interface PageProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface PageProps extends DetailedHTMLProps<HtmlHTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children?: React.ReactNode;
   title: string;
 }
