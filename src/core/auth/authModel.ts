@@ -1,18 +1,14 @@
 interface User {
+  id: string;
   username: string;
-  accessToken: string;
+  full_name?: string;
+  avatar_url?: string;
 }
 
-// Anyone who signs in successfully will be given this identity.
-const DEFAULT_USER: User = {
-  username: 'cybersam',
-  accessToken: 'RandomToken',
-};
+interface AuthToken {
+  access_token?: string;
+  expire?: number;
+  profile_id?: string;
+}
 
-const NULL_USER: User = {
-  username: '',
-  accessToken: '',
-};
-
-export type { User };
-export { DEFAULT_USER, NULL_USER };
+export type { AuthToken, User };

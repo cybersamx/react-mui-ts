@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     textAlign: 'center',
   },
+  footnote: {
+    marginTop: theme.spacing(3),
+    textAlign: 'center',
+  },
 }));
 
 function previousPath(search: string) {
@@ -84,7 +88,7 @@ function SignInForm({ onSubmit }: SignInFormProps) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <InputField name="username" />
+          <InputField name="username" autoFocus />
           <InputField name="password" type="password" />
           <FormControlLabel control={<Checkbox value="remember" />} label="Remember me" />
           <Button
@@ -100,6 +104,9 @@ function SignInForm({ onSubmit }: SignInFormProps) {
         </div>
         <Typography variant="body1" className={classes.signup}>
           or <a href="/signup">sign up</a> for a new account.
+        </Typography>
+        <Typography variant="body2" className={classes.footnote}>
+          Enter <strong>sam</strong> and <strong>password</strong>.
         </Typography>
       </Container>
     </FormProvider>

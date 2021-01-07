@@ -66,7 +66,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 * [React Cookbook](https://learning.oreilly.com/library/view/react-cookbook/9781492085836/) by David Griffiths and Dawn Griffiths, O'Reilly Media, Inc.
 * [Samuel L. Ipsum](https://slipsum.com/) - Normal lorem ipsum is just (well) boring. Text placeholders in this project are generated from Samuel L. Jackson's movie quotes (the sanitized ones).
-* [My JSON Server](my-json-server.typicode.com) - Use fake online REST server for connecting with this client application.
+* [Jdenticon](https://jdenticon.com/) - An open-source library for generating beautiful identicon.
+* [My JSON Server](my-json-server.typicode.com) - Use My JSON Server to serve a static JSON file to fake an online REST server.
 
 # Reference
 

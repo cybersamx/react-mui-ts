@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 
-import { NULL_USER, User } from './authModel';
+import { User } from './authModel';
 import * as authService from './authService';
 
 interface Auth {
@@ -15,7 +15,7 @@ interface AuthProviderProps {
 }
 
 const defaultAuth = {
-  getAuthUser: () => NULL_USER,
+  getAuthUser: () => null,
   isSignedIn: () => false,
   signIn: () => {},
   signOut: () => {},
@@ -29,16 +29,27 @@ function AuthProvider({ children, ...rest }: AuthProviderProps) {
     return authService.getUserFromStorage();
   };
   const isSignedIn = () => {
-    return !!authService.getUserFromStorage();
+    return !!authService.getAuthTokenFromStorage();
   };
   const signOut = () => {
     authService.removeUserFromStorage();
+    authService.removeAuthTokenFromStorage();
   };
   const signIn = async (username: string, password: string): Promise<User | null> => {
     return new Promise<User | null>(async (resolve, reject) => {
       try {
-        const user = await authService.signIn(username, password);
-        console.log('signIn');
+        // Get access and refresh tokens (encapsulated in an auth token object).
+        const authToken = await authService.signIn(username, password);
+        if (!authToken) {
+          return reject(new Error('failed authentication'));
+        }
+        authService.setAuthTokenToStorage(authToken);
+
+        // Get user with an access token.
+        const user = await authService.getMe(authToken);
+        if (!user) {
+          return reject(new Error(`cannot fetch user with access token ${authToken && authToken.access_token}`));
+        }
         authService.setUserToStorage(user);
         resolve(user);
       } catch (err) {

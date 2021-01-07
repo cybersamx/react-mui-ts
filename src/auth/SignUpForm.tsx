@@ -1,4 +1,4 @@
-import { Avatar, Button, Checkbox, Container, FormControlLabel, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Button, Container, makeStyles, Typography } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { FormEvent, useState } from 'react';
 

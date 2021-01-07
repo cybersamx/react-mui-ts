@@ -55,7 +55,6 @@ function InputField({ onValidate, name, label, ...rest }: InputFieldProps) {
           form.setFieldDirty(name);
           form.setField(name, e.target.value);
         }}
-        autoFocus
         {...rest}
       />
       {<Typography variant="body2">{form.isFieldDirty(name) && error ? error : ' '}</Typography>}

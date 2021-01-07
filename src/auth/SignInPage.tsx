@@ -1,15 +1,13 @@
-import { makeStyles, Typography } from '@material-ui/core';
-import { Fragment } from 'react';
-
 import { NavBar } from '../core/bars';
+import { Page } from '../layouts';
 import SignInForm from './SignInForm';
 
 function SignInPage() {
   return (
-    <Fragment>
+    <Page title="Sign-In">
       <NavBar />
       <SignInForm />
-    </Fragment>
+    </Page>
   );
 }
 

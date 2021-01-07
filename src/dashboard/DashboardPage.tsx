@@ -1,6 +1,7 @@
 import { Container, makeStyles, Theme, Typography } from '@material-ui/core';
 
 import { useAuth } from '../core/auth';
+import { Avatar } from '../core/avatar';
 import { Page } from '../layouts';
 import { NavBar } from '../core/bars';
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 function DashboardPage() {
   const auth = useAuth();
   const classes = useStyles();
+  const user = auth.getAuthUser();
 
   return (
     <Page title="Dashboard">
@@ -28,7 +30,11 @@ function DashboardPage() {
         <Typography variant="h2" className={classes.title}>
           Dashboard
         </Typography>
-        <Typography variant="h4">Welcome {auth.getAuthUser()?.username}</Typography>
+        {user && user.avatar_url && (
+          <Typography variant="h4">
+            <Avatar src={user.avatar_url} alt="Samuel L. Jackson Avatar" /> Welcome {` ${user.username}`}
+          </Typography>
+        )}
         <Typography variant="body2">
           You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world
           once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know

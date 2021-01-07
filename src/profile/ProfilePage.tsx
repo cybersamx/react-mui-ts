@@ -1,6 +1,7 @@
 import { Container, makeStyles, Theme, Typography } from '@material-ui/core';
 
 import { useAuth } from '../core/auth';
+import { Avatar } from '../core/avatar';
 import { Page } from '../layouts';
 import { NavBar } from '../core/bars';
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 function ProfilePage() {
   const auth = useAuth();
   const classes = useStyles();
+  const user = auth.getAuthUser();
 
   return (
     <Page title="Profile">
@@ -28,7 +30,11 @@ function ProfilePage() {
         <Typography variant="h2" className={classes.title}>
           Profile
         </Typography>
-        <Typography variant="h4">Welcome {auth.getAuthUser()?.username}</Typography>
+        {user && user.avatar_url && (
+          <Typography variant="h4">
+            <Avatar src={user.avatar_url} alt="Samuel L. Jackson Avatar" /> Welcome {` ${user.username}`}
+          </Typography>
+        )}
         <Typography variant="body2">
           Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how
           you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're
